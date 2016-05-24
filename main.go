@@ -9,8 +9,11 @@ import (
 
 func main() {
 	array := utils.SortedArray(100)
-	num := 8
-	a := search.LinearSearch(array, num)
-	fmt.Println(a)
-	fmt.Println(array)
+	num := 88
+	a := search.BinarySearch(array, num)
+    if a != -1 {
+        fmt.Printf("Position of %v in the array: %v\n", num, a)
+    } else {
+        fmt.Println("Number not found in array")
+    }
 }
