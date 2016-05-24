@@ -1,20 +1,29 @@
 package sort
 
+import (
+	"AlGolang/utils"
+	"time"
+)
+
 func SelectionSort(data []int) []int {
-    
-    loc := 0
-    min := 0
-    
-    for i := 0; i < len(data); i++ {
-        min = data[i]
-        for j := i; j < len(data); j++ {
-            if data[j] <= min {
-                min = data[j]
-                loc = j
-            }
-        }
-        data[loc] = data[i]
-        data[i] = min
-    }
-	return data
+
+	defer utils.Track(time.Now(), "Selection sorting")
+	sortedArray := make([]int, len(data))
+	copy(sortedArray, data)
+
+	loc := 0
+	min := 0
+
+	for i := 0; i < len(sortedArray); i++ {
+		min = sortedArray[i]
+		for j := i; j < len(sortedArray); j++ {
+			if sortedArray[j] <= min {
+				min = sortedArray[j]
+				loc = j
+			}
+		}
+		sortedArray[loc] = sortedArray[i]
+		sortedArray[i] = min
+	}
+	return sortedArray
 }

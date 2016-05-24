@@ -1,16 +1,16 @@
 package utils
 
 import (
-        "math/rand"
-        "time"
+	"math/rand"
+	"time"
 )
 
 func RandomArray(size int) []int {
-    rand.Seed(time.Now().UTC().UnixNano())
-	array := make([]int, size)
-    for i := 0; i < size; i++ {
-        array[i] = rand.Intn(size)        
-    }
-    
-    return array
+	rand.Seed(time.Now().UTC().UnixNano())
+	var array []int
+	for i := 0; i < size; i++ {
+		array = append(array, rand.Intn(size))
+	}
+
+	return array
 }
