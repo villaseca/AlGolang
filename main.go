@@ -1,25 +1,49 @@
 package main
 
 import (
-	"AlGolang/search"
 	"AlGolang/sort"
 	"AlGolang/utils"
 	"fmt"
+	"reflect"
+	"runtime"
+	"strings"
+	"time"
 )
 
+var arraySize int
+var testSize int
+
 func main() {
-	array := utils.RandomArray(10000)
-	num := 542
-	sort.InsertionSort(array)
-	sort.BubbleSort(array)
-	sort.SelectionSort(array)
+	fmt.Printf("Array size: ")
+	fmt.Scanf("%d", &arraySize)
+	fmt.Printf("Test size: ")
+	fmt.Scanf("%d", &testSize)
+	benchmark(sort.BubbleSort())
+	benchmark(sort.InsertionSort())
+	benchmark(sort.SelectionSort())
+}
 
-	d := search.LinearSearch(array, num)
+func benchmark(function func(data []int) []int) {
 
-	if d != -1 {
-		fmt.Printf("Position of %v in the array: %v\n", num, d)
-	} else {
-		fmt.Println("Number not found in array")
+	var elapsed time.Duration
+	for i := 1; i <= testSize; i++ {
+		array := utils.RandomArray(arraySize, int64(i*testSize*arraySize))
+		start := time.Now()
+		function(array)
+		elapsed += time.Since(start)
 	}
 
+	name := getFunctionName(function)
+	firstIndex := strings.Index(name, ".")
+	lastIndex := strings.Index(name, "Sort")
+	name = name[firstIndex+1 : lastIndex]
+	fmt.Printf("\n%v sorting...\n", name)
+
+	fmt.Printf("\tSorting time of %v arrays of size %v is %s\n", testSize, arraySize, time.Duration(elapsed))
+	fmt.Printf("\tAverage sorting time of %v arrays of size %v is %s\n", testSize, arraySize, time.Duration(elapsed)/(time.Duration(testSize)))
+
+}
+
+func getFunctionName(i interface{}) string {
+	return runtime.FuncForPC(reflect.ValueOf(i).Pointer()).Name()
 }

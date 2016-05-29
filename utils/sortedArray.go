@@ -1,15 +1,13 @@
 package utils
 
-import (
-	"math/rand"
-	"time"
-)
+import "math/rand"
 
-func SortedArray(size int) []int {
-	rand.Seed(time.Now().UTC().UnixNano())
+//SortedArray generates an ordered array of integers
+func SortedArray(size int, seed int64) []int {
+	rand.Seed(seed)
 	var array []int
 	for i := 0; i < size; i++ {
-		var noise int = rand.Intn(2)
+		noise := rand.Intn(2)
 		array = append(array, i+1+noise)
 		size = size + noise
 		i = i + noise

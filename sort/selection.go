@@ -1,29 +1,26 @@
 package sort
 
-import (
-	"AlGolang/utils"
-	"time"
-)
+//SelectionSort returns a function that receives an array and selection sorts it
+func SelectionSort() func(data []int) []int {
 
-func SelectionSort(data []int) []int {
+	return func(data []int) []int {
+		sortedArray := make([]int, len(data))
+		copy(sortedArray, data)
 
-	defer utils.Track(time.Now(), "Selection sorting")
-	sortedArray := make([]int, len(data))
-	copy(sortedArray, data)
+		loc := 0
+		min := 0
 
-	loc := 0
-	min := 0
-
-	for i := 0; i < len(sortedArray); i++ {
-		min = sortedArray[i]
-		for j := i; j < len(sortedArray); j++ {
-			if sortedArray[j] <= min {
-				min = sortedArray[j]
-				loc = j
+		for i := 0; i < len(sortedArray); i++ {
+			min = sortedArray[i]
+			for j := i; j < len(sortedArray); j++ {
+				if sortedArray[j] <= min {
+					min = sortedArray[j]
+					loc = j
+				}
 			}
+			sortedArray[loc] = sortedArray[i]
+			sortedArray[i] = min
 		}
-		sortedArray[loc] = sortedArray[i]
-		sortedArray[i] = min
+		return sortedArray
 	}
-	return sortedArray
 }
