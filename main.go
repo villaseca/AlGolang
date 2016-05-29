@@ -1,7 +1,7 @@
 package main
 
 import (
-	"AlGolang/sort"
+	"AlGolang/bench"
 	"AlGolang/utils"
 	"fmt"
 	"reflect"
@@ -18,9 +18,9 @@ func main() {
 	fmt.Scanf("%d", &arraySize)
 	fmt.Printf("Test size: ")
 	fmt.Scanf("%d", &testSize)
-	benchmark(sort.BubbleSort())
-	benchmark(sort.InsertionSort())
-	benchmark(sort.SelectionSort())
+	benchmark(bench.BubbleSort())
+	benchmark(bench.InsertionSort())
+	benchmark(bench.SelectionSort())
 }
 
 func benchmark(function func(data []int) []int) {
