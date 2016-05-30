@@ -11,4 +11,4 @@ func Track(start time.Time, name string) {
 	fmt.Printf("%s took %s\n", name, elapsed)
 }
 
-//Add "defer Track(time.Now(), name)" to start tracking
+//Add "defer utils.Track(time.Now(), name)" to start tracking
