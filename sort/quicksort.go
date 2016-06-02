@@ -2,8 +2,8 @@ package sort
 
 //Based on: http://rosettacode.org/wiki/Sorting_algorithms/Quicksort
 
-//Quicksort takes an array and quicksorts it
-func Quicksort(data []int) []int {
+//QuickSort takes an array and quicksorts it
+func QuickSort(data []int) []int {
 	var less, equal, greater []int
 
 	if len(data) > 1 {
@@ -18,8 +18,8 @@ func Quicksort(data []int) []int {
 			}
 		}
 
-		less = Quicksort(less)
-		greater = Quicksort(greater)
+		less = QuickSort(less)
+		greater = QuickSort(greater)
 		data = append(append(less, equal...), greater...)
 	}
 	return data

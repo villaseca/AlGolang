@@ -21,13 +21,14 @@ func main() {
 	benchmark(bench.BubbleSort())
 	benchmark(bench.InsertionSort())
 	benchmark(bench.SelectionSort())
+	benchmark(bench.QuickSort())
 }
 
 func benchmark(function func(data []int) []int) {
 
 	var elapsed time.Duration
 	for i := 1; i <= testSize; i++ {
-		array := utils.RandomArray(arraySize, int64(i*testSize*arraySize))
+		array := utils.SortedArray(arraySize, int64(i*testSize*arraySize))
 		start := time.Now()
 		function(array)
 		elapsed += time.Since(start)
