@@ -1,4 +1,4 @@
-package sort
+package test
 
 //Based on: http://rosettacode.org/wiki/Sorting_algorithms/Insertion_sort
 
